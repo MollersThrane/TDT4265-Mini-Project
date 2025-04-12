@@ -1,0 +1,12 @@
+path: /work/tobiart/TDT4265-Mini-Project/data/lidar
+train: train
+val:   valid
+test:  test
+
+# path: /work/datasets/tdt4265/ad/open/Poles/lidar/
+# train: combined_color/train
+# val:   combined_color/valid
+# test:  combined_color/test
+
+nc: 1
+names: ['pole']
