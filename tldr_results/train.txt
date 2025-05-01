@@ -8,7 +8,7 @@ mAP@0.5: 0.8792
 mAP@0.5:0.95: 0.4313
 Training completed in 1585.12 seconds.
 Validation completed in 2.09 seconds.
-
+Predictions completed in 2.45 seconds.
 
 
 

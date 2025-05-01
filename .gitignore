@@ -1,6 +1,6 @@
 runs/
 .venv/
 data/
-yolo11n.pt
+yolo*.pt
 visualized_labels/
 test_predictions/

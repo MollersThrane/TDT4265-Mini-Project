@@ -5,9 +5,9 @@ from ultralytics import YOLO
 from glob import glob
 import time  # Import the time module
 
-def train_model():
-    MODEL_NAME = "yolo11n.pt"
-    model = YOLO(MODEL_NAME)
+def train_model(model_name="yolo11n.pt"):
+    # MODEL_NAME = "yolo11n.pt"
+    model = YOLO(model_name)
     data_path = "data.yaml"
 
     print("Starting training...")
@@ -44,6 +44,7 @@ def load_latest_model():
     # Load the latest model
     run_dirs = sorted(glob("/work/tobiart/TDT4265-Mini-Project/runs/detect/train*/weights/best.pt"), key=os.path.getmtime)
     latest_model_path = run_dirs[-1]  # most recent
+    print(f"Loading model from: {latest_model_path}")
     model = YOLO(latest_model_path)
     return model
 
@@ -60,30 +61,49 @@ def model_predict(model):
     end_time = time.time()  # End timing
     print(f"Predictions completed in {end_time - start_time:.2f} seconds.")
 
-def print_metrics(model):
+def print_metrics(model, model_name="yolo11n.pt"):
     print("Validating the model...")
     start_time = time.time()  # Start timing
     metrics = model.val()
     end_time = time.time()  # End timing
 
-    print("Metrics:")
-    print(f"Precision: {metrics.box.mp:.4f}")  # Precision
-    print(f"Recall: {metrics.box.mr:.4f}")    # Recall
-    print(f"F1 Score: {metrics.box.f1}")      # F1 Score
-    print(f"mAP@0.5: {metrics.box.map50:.4f}")    # mAP at IoU=0.5
-    print(f"mAP@0.5:0.95: {metrics.box.map:.4f}") # mAP at IoU=0.5:0.95
-    print(f"Validation completed in {end_time - start_time:.2f} seconds.")
+    # print("Metrics:")
+    # print(f"Precision: {metrics.box.mp:.4f}")  # Precision
+    # print(f"Recall: {metrics.box.mr:.4f}")    # Recall
+    # print(f"F1 Score: {metrics.box.f1}")      # F1 Score
+    # print(f"mAP@0.5: {metrics.box.map50:.4f}")    # mAP at IoU=0.5
+    # print(f"mAP@0.5:0.95: {metrics.box.map:.4f}") # mAP at IoU=0.5:0.95
+    # print(f"Validation completed in {end_time - start_time:.2f} seconds.")
+
+    # Write metrics to a file
+    with open(f"tldr_results/{model_name}.txt", "a") as f:
+        f.write(f"Model: {model_name}\n")
+        f.write(f"Precision: {metrics.box.mp:.4f}\n")
+        f.write(f"Recall: {metrics.box.mr:.4f}\n")
+        f.write(f"F1 Score: {metrics.box.f1}\n")
+        f.write(f"mAP@0.5: {metrics.box.map50:.4f}\n")
+        f.write(f"mAP@0.5:0.95: {metrics.box.map:.4f}\n")
+        f.write(f"Validation completed in {end_time - start_time:.2f} seconds.\n\n")
 
 if __name__ == "__main__":
+
+    models = ["yolo11m.pt"]
+    # models = ["yolo11n.pt", "yolo11s.pt", "yolo11m.pt"]
     # Train the model
-    train_model()
+    for model_name in models:
+        print(f"Training {model_name}...")
+        train_model(model_name=model_name)
 
-    # Load the best model
-    model = load_latest_model()
+        # Load the latest model
+        model = load_latest_model()
 
-    # Print the metrics of the model
-    print_metrics(model)
+        # Print the metrics of the model
+        print_metrics(model, model_name=model_name)
 
-    # Make predictions on the test set
-    #model_predict(model)
+    # # Make predictions on the test set
+    # model_predict(model)
+
+    # model = load_latest_model()
+    # model_predict(model)
+
 
