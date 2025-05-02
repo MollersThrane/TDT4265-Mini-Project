@@ -1,0 +1,14 @@
+Model: yolov8m.pt
+Precision: 0.8948
+Recall: 0.8408
+F1 Score: [    0.86694]
+mAP@0.5: 0.8946
+mAP@0.5:0.95: 0.4399
+Training completed in 4262.63 seconds.
+Validation completed in 2.41 seconds.
+Speed: 0.0ms preprocess, 0.6ms inference, 0.0ms loss, 0.3ms postprocess per image
+
+
+
+
+COMMENT: batch_size=16
