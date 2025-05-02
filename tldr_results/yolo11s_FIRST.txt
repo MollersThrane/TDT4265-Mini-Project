@@ -1,0 +1,46 @@
+
+
+Model: yolo11s.pt
+Precision: 0.8798
+Recall: 0.8441
+F1 Score: [    0.86156]
+mAP@0.5: 0.8935
+mAP@0.5:0.95: 0.4469
+Validation completed in 3.22 seconds.
+Speed: 0.1ms preprocess, 0.7ms inference, 0.0ms loss, 0.5ms postprocess per image
+
+
+
+
+
+
+
+
+
+
+
+model.train(
+        data=data_path,
+        epochs=200,  # Increase epochs for longer training
+        batch=32,  # Larger batch size for better convergence
+        lr0=0.005,  # Higher initial learning rate
+        lrf=0.001,  # Reduce learning rate at the end of training
+        dropout=0.1,  # Dropout for regularization
+        momentum=0.9,  # Higher momentum for smoother training
+        weight_decay=0.0005,  # Regularization to prevent overfitting
+        warmup_epochs=5,  # Warm-up for a smoother start
+        imgsz=1024,  # Image size, you can try 1024 for better detail
+        close_mosaic=20,  # Close mosaic augmentation
+        iou=0.7,  # IoU threshold for detection
+        conf=0.4,  # Confidence threshold for detection
+        flipud=0.0,  # Disable vertical flip
+        fliplr=0.5,  # Horizontal flip probability
+        hsv_h=0.015,  # Random hue jitter
+        hsv_s=0.7,  # Random saturation jitter
+        hsv_v=0.4,  # Random value jitter
+        scale=0.7,  # Scale augmentation
+        translate=0.1, # Translation augmentation
+        perspective=0.001,  # Perspective augmentation
+        erasing=0.2,  # Erasing augmentation
+        device="0",  # Specify GPU (0 for first GPU)
+    )

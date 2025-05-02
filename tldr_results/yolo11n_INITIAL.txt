@@ -1,6 +1,6 @@
 COMMENT: Initial run
 
-Metrics:
+Model: yolo11n.pt
 Precision: 0.8721
 Recall: 0.8212
 F1 Score: [     0.8459]

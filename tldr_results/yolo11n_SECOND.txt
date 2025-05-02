@@ -1,6 +1,6 @@
 COMMENT: Asked chat for tuning tips
 
-Metrics:
+Model: yolo11n.pt
 Precision: 0.8860
 Recall: 0.8213
 F1 Score: [    0.85242]

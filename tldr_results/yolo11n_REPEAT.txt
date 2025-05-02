@@ -1,12 +1,19 @@
-Model: yolo11s.pt
-Precision: 0.8798
-Recall: 0.8441
-F1 Score: [    0.86156]
-mAP@0.5: 0.8935
-mAP@0.5:0.95: 0.4469
-Validation completed in 3.22 seconds.
+Model: yolo11n.pt
+Precision: 0.8697
+Recall: 0.8457
+F1 Score: [    0.85751]
+mAP@0.5: 0.8817
+mAP@0.5:0.95: 0.4249
+Training completed in 1530.86 seconds.
+Validation completed in 2.10 seconds.
+Speed: 0.1ms preprocess, 0.5ms inference, 0.0ms loss, 0.4ms postprocess per image
 
-Speed: 0.1ms preprocess, 0.7ms inference, 0.0ms loss, 0.5ms postprocess per image
+
+
+
+
+
+
 
 
 
